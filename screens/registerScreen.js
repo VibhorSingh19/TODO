@@ -13,7 +13,7 @@ import {
   Alert
 } from "react-native";
  
-export default function RegisterScreen() {
+export default function RegisterScreen( navigation) {
     // "name": "Vibhor Singh",
     // "email": "vibhor.for@gmail.com",
     // "phone": "8979832427",
@@ -24,8 +24,9 @@ export default function RegisterScreen() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
  
-  const sendCred = async ()=>{
-    fetch("http://127.0.0.1:3000/Api/register",{
+  const sendCred = ()=>{
+     // console.log(name+" "+email);
+    fetch("http://localhost:3000/api/register",{
       method:"POST",
       headers: {
        'Content-Type': 'application/json'
@@ -39,9 +40,10 @@ export default function RegisterScreen() {
     })
     .then(res=>res.json())
     .then(data=>{
-        Alert.alert('OOPS!',data.message,[
-                         {text:'try again',onPress:()=>console.log('Alert closed')}
-                     ])
+        
+      }).catch((e)=>{
+        navigation.navigate('TODO');
+          //console.log(e);
       })
     // .then(async (data)=>{
     //        try {

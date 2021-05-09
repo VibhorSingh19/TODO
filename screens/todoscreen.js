@@ -9,7 +9,7 @@ export default function ToDOScreen() {
     const [toDo,settoDo]=useState([
         {text:"Complete your HW",id:1},
         {text:"Call aman",id:2},
-        {text:"Dance till 9",id:3},
+        {text:"workout at 9",id:3},
         {text:"call meeee",id:4},
         {text:"work on your project",id:5},
         

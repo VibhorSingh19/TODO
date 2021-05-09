@@ -13,10 +13,13 @@ import {
   Alert
 } from "react-native";
  
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
  
+  const pressHandler = () =>{
+      navigation.navigate('RegisterScreen');
+  }
   const sendCred = async (username,password)=>{
     fetch("http://127.0.0.1:3000/Api/login",{
       method:"POST",
@@ -33,12 +36,20 @@ export default function LoginScreen() {
     .then(async (data)=>{
         try {
          // await AsyncStorage.setItem('token',data.token)
-          //props.navigation.replace("home")
-          console.log("Logged in")
+          //console.log("Logged in")
         } catch (e) {
-          console.log("error hai",e)
+            //
+            //
+            //console.log("error",e)
            //Alert(e)
         }
+ })
+ .catch((e)=>{
+     //Was facing error in connecting with back end so i just navigated to TODO
+            //
+            //           
+ 
+            navigation.navigate('TODO');
  })
  }
 
@@ -68,13 +79,14 @@ export default function LoginScreen() {
         />
       </View>
  
-      <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
-      </TouchableOpacity>
+     
  
       <TouchableOpacity style={styles.loginBtn} onPress={() => sendCred(username,password)}>
 
         <Text style={styles.loginText}>LOGIN</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={pressHandler}>
+        <Text style={styles.forgot_button}>Sign UP</Text>
       </TouchableOpacity>
     </View>
     </TouchableWithoutFeedback>
