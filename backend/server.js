@@ -9,7 +9,6 @@ mongoose.connect(mongoUrl,{
     useUnifiedTopology:true
 })
 const db= mongoose.connection
-
 db.on('error',(err)=>{
     console.log(err)
 })
@@ -19,8 +18,10 @@ console.log('Database connection Established...')
 })
 
 const app = express()
-
+app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
+
+//app.use(bodyParser.json())
 
 const PORT = process.env.PORT || 3000
 
